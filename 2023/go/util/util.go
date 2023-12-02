@@ -2,20 +2,14 @@ package util
 
 import (
 	"bufio"
+	"bytes"
 	"crypto/md5"
 	"encoding/hex"
-	"os"
 )
 
-func readInput(name string) ([]string, error) {
-	file, err := os.Open(name)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
+func ReadInput(content []byte) ([]string, error) {
 	var lines []string
-	scanner := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(bytes.NewReader(content))
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
@@ -27,7 +21,7 @@ func readInput(name string) ([]string, error) {
 	return lines, nil
 }
 
-func toMD5(text string) string {
+func ToMD5(text string) string {
 	hash := md5.New()
 	hash.Write([]byte(text))
 	return hex.EncodeToString(hash.Sum(nil))

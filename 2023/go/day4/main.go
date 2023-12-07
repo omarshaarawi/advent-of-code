@@ -3,7 +3,6 @@ package main
 import (
 	_ "embed"
 	"fmt"
-	"github.com/omarshaarawi/advent-of-code/util"
 	"strconv"
 	"strings"
 )
